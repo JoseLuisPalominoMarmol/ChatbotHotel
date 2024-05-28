@@ -1,0 +1,55 @@
+version: "3.1"
+
+rules:
+
+- rule: Say goodbye anytime the user says goodbye
+  steps:
+  - intent: goodbye
+  - action: utter_goodbye
+
+- rule: Activate Book Form
+  steps:
+  - intent: book_room
+  - action: book_room_form
+  - active_loop: book_room_form
+  - active_loop: null
+  - action: utter_submit
+  - action: utter_slots_values
+
+- rule: Submit Booking Form
+  condition:
+  - active_loop: book_room_form
+  steps:
+  - action: book_room_form
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - action: utter_submit
+  - action: utter_slots_values
+
+- rule: Activate Cancel Reservation Form
+  steps:
+  - intent: cancel_reservation
+  - action: cancel_reservation_form
+  - active_loop: cancel_reservation_form
+
+- rule: Submit Cancellation Form
+  condition:
+  - active_loop: cancel_reservation_form
+  steps:
+  - action: cancel_reservation_form
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - action: utter_confirm_cancellation
+
+- rule: Submit Feedback Form
+  condition:
+  - active_loop: feedback_form
+  steps:
+  - action: feedback_form
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - action: utter_thank_you_feedback
+

@@ -1,0 +1,180 @@
+version: '3.1'
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true
+intents:
+- greet
+- goodbye
+- affirm
+- deny
+- book_room
+- cancel_reservation
+- provide_feedback
+- stop
+
+entities:
+- room_type
+- check_in_date
+- check_out_date
+- customer_email
+- reservation_id
+- feedback_content
+
+slots:
+  room_type:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: room_type
+        conditions:
+          - active_loop: book_room_form
+            requested_slot: room_type
+  check_in_date:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: check_in_date
+        conditions:
+          - active_loop: book_room_form
+            requested_slot: check_in_date
+  check_out_date:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_text
+        entity: check_out_date
+        conditions:
+          - active_loop: book_room_form
+            requested_slot: check_out_date
+  number_of_guests:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_text
+        conditions:
+          - active_loop: book_room_form
+            requested_slot: number_of_guests
+  customer_email:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: customer_email
+        conditions:
+          - active_loop: book_room_form
+            requested_slot: customer_email
+          - active_loop: cancel_reservation_form
+            requested_slot: customer_email
+          - active_loop: feedback_form
+            requested_slot: customer_email
+  reservation_id:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: reservation_id
+        conditions:
+          - active_loop: cancel_reservation_form
+            requested_slot: reservation_id
+          - active_loop: feedback_form
+            requested_slot: reservation_id
+  feedback_content:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_text
+        conditions:
+          - active_loop: feedback_form
+            requested_slot: feedback_content
+
+forms:
+  book_room_form:
+    required_slots:
+      - room_type
+      - check_in_date
+      - check_out_date
+      - number_of_guests
+      - customer_email
+  cancel_reservation_form:
+    required_slots:
+      - reservation_id
+      - customer_email
+  feedback_form:
+    required_slots:
+      - reservation_id
+      - customer_email
+      - feedback_content
+    
+responses:
+  utter_greet:
+  - text: "¡Hola! ¿Qué tal estás? ¿En qué puedo ayudarte?"
+  utter_goodbye:
+  - text: "Hasta luego, esperamos verte pronto!"
+  utter_ask_book_room_form_room_type:
+  - text: "¿Qué tipo de habitación te gustaría reservar?"
+  utter_ask_book_room_form_check_in_date: 
+  - text: "¿Podría indicarnos la fecha de entrada, por favor?"
+  utter_ask_book_room_form_check_out_date: 
+  - text: "¿Podría indicarnos la fecha de salida, por favor?"
+  utter_ask_book_room_form_number_of_guests:
+  - text: "¿Cuántas personas se alojarán en la habitación?"
+  utter_ask_book_room_form_customer_email:
+  - text: "Por favor, dame tu correo electrónico para confirmar la reserva."
+  utter_ask_cancel_reservation_form_reservation_id:
+  - text: "Por favor, dame el ID de tu reserva para proceder con la cancelación."
+  utter_ask_cancel_reservation_form_customer_email:
+  - text: "Por favor, dame tu correo electrónico para confirmar la cancelación de la reserva."
+  utter_ask_feedback_form_customer_email: 
+  - text: "Por favor, dame tu correo electrónico para registrar tu feedback."
+  utter_ask_feedback_form_reservation_id:
+  - text: "Por favor, dame tu número de reserva para registrar tu feedback."
+  utter_ask_feedback_form_feedback_content:  
+  - text: "¿Qué te ha parecido la estancia en nuestro hotel?"
+  utter_ask_feedback_form_feedback_introduction:  
+  - text: "Nos encantaría saber cómo fue tu estancia con nosotros. Previamente, necesito preguntarte una serie de datos sobre tu reserva:"
+  utter_thank_you_feedback:
+  - text: "Gracias por tus comentarios. Nos ayudan a mejorar nuestro servicio."
+  utter_confirm_cancellation:
+  - text: "Tu reserva ha sido cancelada correctamente."
+  utter_error:
+  - text: "Lo siento, no entendí eso. ¿Puedes intentarlo de nuevo?"
+  utter_ask_continue:
+  - text: "¿Deseas continuar con el formulario?"
+  utter_submit:
+  - text: "He registrado todos los detalles necesarios. Estamos procesando tu solicitud."
+  utter_slots_values:
+  - text: "Aquí está el resumen de tu solicitud: Una habitación {room_type} desde el {check_in_date} hasta el {check_out_date} para {number_of_guests} personas."
+  utter_no_understand:
+  - text: "No estoy seguro de haber entendido. ¿Podrías explicarlo de otra manera?"
+  utter_restart:
+  - text: "Vamos a empezar de nuevo. ¿Qué necesitas?"
+  utter_pleasure:
+  - text: "Ha sido un placer atenderle. Nos vemos pronto. Un saludo." 
+
+
+actions:
+  - utter_greet
+  - utter_goodbye
+  - utter_ask_book_room_form_room_type
+  - utter_ask_book_room_form_check_in_date
+  - utter_ask_book_room_form_check_out_date
+  - utter_ask_book_room_form_number_of_guests
+  - utter_ask_book_room_form_customer_email
+  - utter_ask_cancel_reservation_form_reservation_id
+  - utter_ask_cancel_reservation_form_customer_email
+  - utter_ask_feedback_form_customer_email
+  - utter_ask_feedback_form_reservation_id
+  - utter_ask_feedback_form_feedback_content
+  - utter_ask_feedback_form_feedback_introduction
+  - utter_thank_you_feedback 
+  - utter_confirm_cancellation 
+  - utter_ask_continue 
+  - utter_error 
+  - utter_submit 
+  - utter_slots_values 
+  - utter_no_understand 
+  - utter_restart 
+  - utter_pleasure
+  - validate_book_room_form

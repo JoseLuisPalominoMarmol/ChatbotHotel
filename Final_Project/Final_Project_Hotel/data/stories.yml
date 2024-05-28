@@ -1,0 +1,136 @@
+version: "3.1"
+stories:
+
+- story: happy path booking a room
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: book_room
+  - action: book_room_form
+  - active_loop: book_room_form
+  - slot_was_set:
+    - requested_slot: room_type
+  - slot_was_set:
+    - room_type: doble
+  - slot_was_set:
+    - requested_slot: check_in_date
+  - slot_was_set:
+    - check_in_date: "20/12/2024"
+  - slot_was_set:
+    - requested_slot: check_out_date
+  - slot_was_set:
+    - check_out_date: "25/12/2024"
+  - slot_was_set:
+    - requested_slot: number_of_guests
+  - slot_was_set:
+    - number_of_guests: 2
+  - slot_was_set:
+    - requested_slot: customer_email
+  - slot_was_set:
+    - customer_email: "paco@gmail.com"
+  - slot_was_set: 
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_submit
+  - action: utter_slots_values
+  - intent: affirm
+  - action: utter_pleasure
+  - intent: goodbye
+  - action: utter_goodbye
+
+- story: happy path booking a room 2
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: book_room
+  - action: book_room_form
+  - active_loop: book_room_form
+  - slot_was_set:
+    - requested_slot: room_type
+  - slot_was_set:
+    - room_type: individual
+  - slot_was_set:
+    - requested_slot: check_in_date
+  - slot_was_set:
+    - check_in_date: "10/05/2024"
+  - slot_was_set:
+    - requested_slot: check_out_date
+  - slot_was_set:
+    - check_out_date: "15/05/2024"
+  - slot_was_set:
+    - requested_slot: number_of_guests
+  - slot_was_set:
+    - number_of_guests: 1
+  - slot_was_set:
+    - requested_slot: customer_email
+  - slot_was_set:
+    - customer_email: "pedro@gmail.com"
+  - slot_was_set: 
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_submit
+  - action: utter_slots_values
+  - intent: affirm
+  - action: utter_pleasure
+  - intent: goodbye
+  - action: utter_goodbye
+
+- story: cancel reservation path
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: cancel_reservation
+  - action: cancel_reservation_form
+  - active_loop: cancel_reservation_form
+  - slot_was_set:
+    - requested_slot: reservation_id
+  - slot_was_set:
+    - reservation_id: "54321"
+  - slot_was_set:
+    - requested_slot: customer_email
+  - slot_was_set: 
+    - customer_email: "anamaria@gmail.com"
+  - active_loop: null
+  - action: utter_confirm_cancellation
+  - intent: goodbye
+  - action: utter_goodbye
+
+- story: Activate Feedback Form
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: provide_feedback
+  - action: utter_ask_feedback_form_feedback_introduction
+  - action: feedback_form
+  - active_loop: feedback_form
+  - slot_was_set:
+    - requested_slot: reservation_id
+  - slot_was_set: 
+    - reservation_id: "12345"
+  - slot_was_set:
+    - requested_slot: customer_email
+  - slot_was_set:
+    - customer_email: "marta@gmail.com"
+  - slot_was_set:
+    - requested_slot: feedback_content
+  - slot_was_set: 
+    - feedback_content: "Maravillosa la estancia."
+  - active_loop: null
+  - action: utter_thank_you_feedback
+  - intent: goodbye
+  - action: utter_goodbye
+
+- story: User interrupts and doesn't want to continue the form
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: book_room
+  - action: book_room_form
+  - active_loop: book_room_form
+  - intent: stop
+  - action: utter_ask_continue
+  - intent: deny
+  - action: action_deactivate_loop
+  - active_loop: null
+
+

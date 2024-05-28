@@ -1,0 +1,52 @@
+[
+  {
+    "tag_name": "entity",
+    "ids_to_tags": {
+      "1": "B-check_in_date",
+      "2": "I-check_in_date",
+      "3": "L-check_in_date",
+      "4": "U-check_in_date",
+      "5": "B-check_out_date",
+      "6": "I-check_out_date",
+      "7": "L-check_out_date",
+      "8": "U-check_out_date",
+      "9": "B-customer_email",
+      "10": "I-customer_email",
+      "11": "L-customer_email",
+      "12": "U-customer_email",
+      "13": "B-reservation_id",
+      "14": "I-reservation_id",
+      "15": "L-reservation_id",
+      "16": "U-reservation_id",
+      "17": "B-room_type",
+      "18": "I-room_type",
+      "19": "L-room_type",
+      "20": "U-room_type",
+      "0": "O"
+    },
+    "tags_to_ids": {
+      "B-check_in_date": 1,
+      "I-check_in_date": 2,
+      "L-check_in_date": 3,
+      "U-check_in_date": 4,
+      "B-check_out_date": 5,
+      "I-check_out_date": 6,
+      "L-check_out_date": 7,
+      "U-check_out_date": 8,
+      "B-customer_email": 9,
+      "I-customer_email": 10,
+      "L-customer_email": 11,
+      "U-customer_email": 12,
+      "B-reservation_id": 13,
+      "I-reservation_id": 14,
+      "L-reservation_id": 15,
+      "U-reservation_id": 16,
+      "B-room_type": 17,
+      "I-room_type": 18,
+      "L-room_type": 19,
+      "U-room_type": 20,
+      "O": 0
+    },
+    "num_tags": 21
+  }
+]

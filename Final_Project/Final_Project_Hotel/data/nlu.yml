@@ -1,0 +1,90 @@
+version: "3.1"
+nlu:
+- intent: greet
+  examples: |
+    - hola
+    - hola, saludos
+    - hola, empezamos
+    - qué tal
+    - hola, cómo estás?
+    - buenos días
+    - hola, buenos días
+    - saludos
+    - hola, qué quieres?
+- intent: goodbye
+  examples: |
+    - adiós
+    - nos vemos
+    - hasta luego
+    - que tengas buen día
+    - que lo pases bien
+    - hasta siempre
+
+- intent: affirm
+  examples: |
+    - sí, por favor
+    - desde luego
+    - de acuerdo
+    - afirmativo
+    - por supuesto
+    - ok
+- intent: deny
+  examples: |
+    - no
+    - nunca
+    - jamás
+    - no lo creo
+    - no me gusta
+    - que va
+    - desde luego que no
+- intent: book_room
+  examples: |
+    - quiero reservar una habitación [doble](room_type) para entrar el día [20/06/2024](check_in_date).
+    - necesito reservar una habitación [indiviual](room_type) para dos personas con entrada el día [04/06/2024](check_in_date) y salida el [11/06/2024](check_out_date).
+    - quisiera reservar una [suite](room_type) para mi luna de miel con fecha de entrada el [10/08/2024](check_in_date). 
+    - necesito una habitación [triple](room_type) para tres adultos con fecha de entrada el [25/08/2024](check_in_date) y salida el [30/08/2024](check_out_date). 
+    - me gustaría reservar una habitación [doble](room_type) para el próximo mes. 
+    - ¿puedo reservar una [individual](room_type) para una persona, por favor?
+    - quiero reservar una habitación [doble](room_type) para entrar el [05/11/2024](check_in_date) y salir el [20/11/2024](check_out_date).
+    - quiero reservar una [suite](room_type) con vistas al mar desde el día [01/12/2024](check_in_date) hasta el [10/12/2024](check_out_date).
+    - reservar una habitación.
+    - quiero reservar una habitación en vuestro hotel.
+    - me gustaría reservar habitación para tres personas. 
+    - quiero hacer una reserva de una [suite](room_type) para cinco personas.
+- intent: cancel_reservation
+  examples: |
+    - quiero cancelar mi reserva con el número [12345](reservation_id). Mándame la cancelación a [jose@gmail.com](customer_email).
+    - necesito cancelar mi estancia reservada con el id [67890](reservation_id). Confírmame la cancelación al correo [pedro@gmail.com](customer_email).
+    - necesito cancelar la reserva que hice. el codigo de reserva es [12121](reservation_id). Mándame la cancelación a [antonio@gmail.com](customer_email).
+    - por favor, cancela mi reserva con código de reserva [54321](reservation_id). Mándame la cancelación a [juan@gmail.com](customer_email).
+    - deseo cancelar mi reserva con identificador [98765](reservation_id), he cambiado de planes. Envíame la cancelación a [rosa@gmail.com](customer_email).
+    - cancelar la reserva con el número [55544](reservation_id), por favor. Confírmame la cancelación al correo [juana@gmail.com](customer_email).
+    - tengo que anular la reserva con el id [20230](reservation_id) debido a un imprevisto. Mándame la cancelación a [anamaria@gmail.com](customer_email).
+    - quisiera proceder con la cancelación de mi reserva de hotel, el id es [67890](reservation_id). Mándame la cancelación a [sara@gmail.com](customer_email).
+    - ¿pueden ayudarme a cancelar mi reserva? el número es [11222](reservation_id). Mándame la cancelación a [luis@gmail.com](customer_email).
+    - debo cancelar mi reserva. el número de identificación es [33344](reservation_id). Mándame la cancelación de la reserva a [celia@gmail.com](customer_email).
+    - quiero anular mi reserva que tiene el código [65421](reservation_id). Escríbeme con la cancelación a [mariajose@gmail.com](customer_email).
+    - cancela la reserva que hice bajo el número [12356](reservation_id), no podré asistir. Mándame la cancelación a [ruiz@gmail.com](customer_email).
+- intent: provide_feedback
+  examples: |
+    - aquí mi opinión: [el servicio fue excepcional, pero la comida necesita mejorar.](feedback_content).
+    - mi feedback es el siguiente: [las habitaciones estaban limpias pero el ruido de la calle era demasiado.](feedback_content).
+    - comentarios sobre mi estancia: [todo estuvo perfecto, especialmente la amabilidad del personal.](feedback_content).
+    - tengo algunas observaciones: [la piscina estaba un poco sucia, sería bueno mantenerla más limpia.](feedback_content).
+    - quiero dejar un comentario: [me encantó el desayuno buffet, aunque los ascensores eran lentos.](feedback_content).
+    - mi opinión sobre el hotel es: [los servicios son buenos, pero podrían mejorar la señalización interna.](feedback_content).
+    - me gustaría comentar: [la estancia fue buena, pero la calidad del Wi-Fi podría mejorar.](feedback_content).
+    - feedback sobre mi visita: [la ubicación es excelente, pero la decoración es un poco anticuada.](feedback_content).
+    - opinión sobre la experiencia: [el personal es muy atento, aunque el estacionamiento es limitado.](feedback_content).
+    - mi evaluación es: [las áreas comunes son hermosas, pero las habitaciones necesitan una mejor insonorización.](feedback_content).
+- intent: stop
+  examples: |
+    - stop
+    - basta
+    - ya es suficiente
+    - quiero salir
+    - quiero parar
+    - salir 
+    - exit
+    - no quiero continuar
+    - fin 
